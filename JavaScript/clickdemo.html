@@ -1,0 +1,18 @@
+<html>
+    <head>
+        this is headline!<br/>
+    </head>
+    <body>
+        <button id="btnClick">Click Me!</button>
+        <input type="text" id="result" />
+        <script>
+            var button = document.getElementById('btnClick');
+            var result = document.getElementById('result');
+            var clickCount = 0;
+            button.addEventListener('click', function () {
+                clickCount++;
+                result.setAttribute('value', clickCount + ': Hello World!');
+            })
+        </script>
+    </body>
+</html>

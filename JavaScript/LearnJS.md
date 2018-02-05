@@ -7,7 +7,8 @@
 **===** 比较，它不会自动转换数据类型，如果数据类型不一致，返回false，如果一致，再比较。  
 
     NaN === NaN; // false
-    isNaN(NaN); // true 
+    isNaN(NaN); // true    
+false：null,undefined, "", 0, NaN
 
 ### 数组
     [1, 2, 3.14, 'Hello', null, true]; //可读性强
@@ -297,7 +298,11 @@ Map的回调函数参数依次为value、key和map本身：
     MYAPP.foo = function () {
         return 'foo';
     };
-把自己的代码全部放入唯一的名字空间MYAPP中，会大大减少全局变量冲突的可能。
+把自己的代码全部放入唯一的名字空间MYAPP中，会大大减少全局变量冲突的可能。  
+
+一种常用方法：  
+
+    var ns = ns || {}; #{}是一个空对象
 
 ### 局部作用域
 let取代var，在block{}形成局部作用域，而不是在函数里面。
@@ -382,3 +387,5 @@ ES6标准引入了新的关键字const来定义常量，const与let都具有块�
 
 ### 方法
 var that = this;，你就可以放心地在方法内部定义其他函数，而不是把所有语句都堆到一个方法中。
+
+## 高阶函数
