@@ -1,2 +1,2 @@
 # Learn
-some codes for my own learning.
+some codes.
