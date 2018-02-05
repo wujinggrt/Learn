@@ -433,3 +433,81 @@ str.toUpperCase()
     .indexOf("str")
     substring(0, 5) or (6)
 
+## 事件响应
+### 事件响应代码
+<元素名字 on事件名称=“<语句块>|<函数名>”>   
+简短的可以镶嵌在<>中，反之应该写出函数  
+
+    // 1
+    <button onclick="alert('Hello World!');">
+        Run Some JavaScript
+    </button>
+
+    // 2
+    <script>
+        function show() {
+            var str = '建议屏幕分辨率:800 * 600''
+            alert(str);
+        }
+    </script>
+    <body onload="show();">
+也可以全部用代码实现:  
+对象名.on事件=<语句>|<函数名>  
+
+    myelement.onclick = function() {
+        // code
+    };
+
+### 注册/取消事件监听函数的方法参数
+DOM:  
+element.addEventListener('click', observer, useCapture);  
+addEventListener方法接收三个参数。第一个参数是事件名称;第二个参数
+observer是回调处理函数;第三个参数注明该处理回调函数是在事件传递过程中
+的捕获阶段被调用还是冒泡阶段被调用。
+
+移除：  
+element.removeEventListener('click', observer, useCapture);
+
+## 开发中的常用事件简介
+### 页面触发的事件
++ onload
++ onunload
+
+### HTML元素常见事件列表
+属性  事件
++ onabort 图像加载被中断
++ onblur 元素失去焦点
++ onchange 用户改变域的内容
++ onclick 鼠标点击某个对象
++ ondblclick 鼠标双击某个对象
++ onerror 当加载文档或图像时发生某个错误
++ onfocus 元素获得焦点
++ onkeydown 某个键盘的键被按下
++ onkeypress 某个键盘的键被按下或按住
++ onkeyup 某个键盘的键被松开
++ onload 某个页面或图像被完成加载
++ onmousedown 某个鼠标按键被按下
++ onmousemove 鼠标被移动
++ onmouseout 鼠标从某元素移开
++ onmouseover 鼠标被移到某元素之上
++ onmouseup 某个鼠标按键被松开
++ onreset 重置按钮被点击
++ onresize 窗口或框架被调整尺寸
++ onselect 文本被选定
++ onsubmit 提交按钮被点击
++ onunload 用户退出页面
+
+### 事件对象的获取
+
+### 事件对象示例
+<div id=“mydiv” onclick=“dealClick(event,this)”>这是一个层</div>
+
+    function divClick(event){
+    if(event.type == “click”){ //事件类型
+    alert(“click”);
+    }
+    var iKeyCode = event.keyCode; //获取按钮
+    var iClientX = event.clientX; //事件的客户端X坐标
+    var iClientY = event.clientY; //事件的客户端Y坐标
+    //……
+    }
