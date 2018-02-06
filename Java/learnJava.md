@@ -64,3 +64,26 @@ Comparable<T>  // lang
 Integer/Double.compare(int x, int y);
 
 default void mousePressed(MouseEvent event) {}
+
+### Comparator<T>
+Arrays.sort(t[], Comparator<T>);
+Comparator<T> {
+    int compare(T first, T second);
+}
+
+### Cloneable<T>
+
+### 函数式接口
+
+### 方法引用
+Arrays.sort(strings，String::conpareToIgnoreCase)
+
+### 匿名内部类
+    ActionListener listener = new ActionListenerO
+    {
+        public void actionPerformed(ActionEvent event)
+        {
+            System.out.println("At the tone, the time is " + new DateO)；
+            if (beep) Toolkit.getDefaultToolkit().beep();
+        }
+    }；
