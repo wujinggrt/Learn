@@ -25,3 +25,14 @@ add(Object obj);
 add(int index, T obj);
 toArray(Array[]); // arr.length = size()
 remove(int index); 
+
+@SuppressWarnings ("unchecked") 
+ArrayList<Employee> result =
+(ArrayList<Employee>) employeeDB.find(query); // yields another warning
+
+## Integer/Double...
+int i = Integer.parseInt(String s); 
+int i = integerObj.intValue();
+
+## 可变数量参数
+printf(String fmt , Object... args) 
