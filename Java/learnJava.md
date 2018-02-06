@@ -36,3 +36,31 @@ int i = integerObj.intValue();
 
 ## 可变数量参数
 printf(String fmt , Object... args) 
+max(double... values);  
+values[0]  // ...像一个数组，可以用下标访问
+
+## enum
+枚举类型都是Enum类的子类
+class则都是Object的子类，但是也与Class类有关
+
+实例化的对象.getClass();
+ClassName.class;
+
+## 反射
+手工加载Class类型
+Class cl = Class.forName(className); // String 类型， might throw exception
+
+JAVA类型
+Class cl1 = Double[].class;
+
+虚拟机为每个类型管理一个 Class 对象。 因此， 可以利用= 运算符实现两个类对象比较
+的操作。    
+e.getClass().newlnstance(); // 根据Class对象来创建e的对象
+
+## 接口
+// Arrays.sort()相关接口
+Comparable<T>  // lang
+
+Integer/Double.compare(int x, int y);
+
+default void mousePressed(MouseEvent event) {}
