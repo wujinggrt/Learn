@@ -87,3 +87,13 @@ Arrays.sort(strings，String::conpareToIgnoreCase)
             if (beep) Toolkit.getDefaultToolkit().beep();
         }
     }；
+
+### 泛型方法
+@SuppressWarnings ("unchecked")   
+出现需要镇压警告，最后用了： -Xlint:unchecked
+
+### 类型变量的限定
+T extends Comparable
+
+### 类型擦除
+无论何时定义一个泛型类型， 都自动提供了一个相应的原始类型 （ raw type)。

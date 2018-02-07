@@ -7,7 +7,7 @@ public class LoggerTest {
         Logger.getGlobal().info("Test: Line5");
         Logger.getGlobal().info("Test: Line6");
         Logger.getGlobal().info("Test: Line7");
-        Logger.getGlobal().info("Test: Line8");
+        Logger.getGlobal().info("Test: Line8"); 
         System.out.println("Hello");
     }
 }
