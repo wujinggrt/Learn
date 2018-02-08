@@ -119,4 +119,24 @@ public interface Queue<E> {
 s+是正则，一个或者多个space
 
 ## jar
-java cvfe
+java cvfe   
+
+# 并发
+public static *returntype* Thread.sleep()
+
+实现了Runnable接口的对象，把这个对象最为构造函数的参数到Thread中去，之后
+start()方法会运行这个
+run()
+
+interrupt()  
+#static
+Thread.currentThread().isInterrupted()
+getState()
+setPriority()
+
+private Lock bankLock = new ReentrantLock();
+bankLock.lock();
+.unlock();
+sufficentFunds = bankLock.newCondition();
+sufficentFunds.await();
+sufficentFunds.signalAll();
