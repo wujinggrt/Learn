@@ -93,7 +93,30 @@ Arrays.sort(strings，String::conpareToIgnoreCase)
 出现需要镇压警告，最后用了： -Xlint:unchecked
 
 ### 类型变量的限定
-T extends Comparable
+T extends Comparable****
 
 ### 类型擦除
 无论何时定义一个泛型类型， 都自动提供了一个相应的原始类型 （ raw type)。
+原始类型
+的名字就是删去类型参数后的泛型类型名。擦除（ erased) 类型变M , 并替换为限定类型 （无
+限定的变量用 Object。)
+
+桥方法 （bridge method):
+
+LocalDate getSecond() // defined in Datelnterval
+Object getSecond() // overrides the method defined in Pair to call the first metho
+
+## 集合/AbstractCollection
+需要熟悉容器
+### Queue
+public interface Queue<E> {
+    void add(E element);
+    E remove();
+    int size();
+}
+
+## str.split("\\s+");
+s+是正则，一个或者多个space
+
+## jar
+java cvfe
