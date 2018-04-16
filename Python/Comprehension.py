@@ -1,4 +1,4 @@
- # list comprehensions
+# list comprehensions
 rows = range(3, 5)
 cols = range(1, 5)
 cells = [(r, c) for r in rows for c in cols]
