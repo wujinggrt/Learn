@@ -76,7 +76,8 @@ Out[5]: <matplotlib.collections.PathCollection at 0x226a5d57908>
 ```
 用法与MATLAB相似，可以添加大小，颜色参数。
 ```py
-In [6]: x = rand(200)
+In [6]: x = rand(200) # 返回array, numpy.random.rand(d0, d1, ..., dn)  
+#In [47]: a = np.random.rand(2, 1)
 
 In [7]: y = rand(200)
 
