@@ -1,35 +1,34 @@
+#include <stdio.h>  
 #include <vector>
 #include <iostream>
 using namespace std;
 
-// void Conjecture()
-// {
-//     int n;
-// 	cin >> n;
-//     vector<vector<int>> vvec;
-//     vvec.reserve(20);
-// 	for (int i = 0; i < n; ++i)
-//     {
-//         int num;
-//         cin >> num;
-//         vector<int> ivec;
-//         ivec.reserve(10);
-//         while(num != 1)
-//         {
-//             num = (num % 2) ? 
-//                 (3 * num + 1) / 2 :
-//                 num / 2;
-//             // odd
-//             ivec.push_back(num);
-//         }// while
-//         vvec.push_back(ivec);
-//     }// for
-// }
+void Conjecture()
+{
+    int n;
+	cin >> n;
+    vector<int> ivec;
+    ivec.reserve(20);
+    for (int i = 0; i < n; ++i)
+    {
+        int temp;
+        cin >> temp;
+        ivec.push_back(temp);
+    }// for
+    ivec.shrink_to_fit();
+    vector<bool> flag(n, false);
+    flag.reserve(n);
+    vector<int> buffer;
+    buffer.reserve(20);
+    for (int i = 0; i < ivec.size(); ++i)
+    {
+        while ()
+    }
+}
 
-#include<stdio.h>  
-int main()  
-{  
-    int n,
+void Copy()
+{
+        int n,
         num[100],
         i,
         j,
@@ -105,5 +104,10 @@ int main()
         else if(tag[i] && !f) 
             printf(" %d",num[i]);  
     }  
+}
+
+int main()  
+{  
+
     return 0;  
 }  
