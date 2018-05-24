@@ -183,7 +183,7 @@ drwxr-xr-x  2 wujing wujing 4096 May  4 09:22 Templates
 drwxr-xr-x  2 wujing wujing 4096 May  4 09:22 Videos
 -rw-r--r--  1 wujing wujing 8980 May  4 09:13 examples.desktop
 ```
-~[](./table3-2.png)
+![](./table3-2.png)
 
 #### Determining File's Type with file
 ---
@@ -200,6 +200,6 @@ wujing@ubuntu:~$ less '/home/wujing/Desktop/main.c'
 ```
 
 **table:**
-~[](./table3-3.png)
+![](./table3-3.png)
 
 **less is more.**
