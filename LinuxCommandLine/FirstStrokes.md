@@ -329,3 +329,236 @@ To see all the aliases defined in the environment, use the alias command without
 * **head**—Output the first part of a file.
 * **tail**—Output the last part of a file.
 * **tee**—Read from standard input and write to standard output and files.
+
+#### Redirecting Standard Output
+---
+we use the *>* redirection operator followed by the name of the file. 
+
+stderr dose not send to stdout.  
+
+we can use this to create new empty file.
+```sh
+$ > newfile
+```
+
+we use >> to avoid rewriting.  
+
+#### Redirecting Stdandard Error
+---
+```sh
+$ ls -l /usr/bin 2> ls-error.txt
+```
+
+#### Output to One File
+---
+```sh
+$ ls -l /usr/bin > ls-output.txt 2>&1
+```
+stderr must always occur after stdin.
+
+```sh
+$ ls -l /usr/bin &> ls-output.txt
+```
+#### Disposing of Unwanted Output
+---
+```sh
+$ ls -l /usr/bin 2> /dev/null
+```
+
+#### cat—Concatenate Files
+---
+You can use *cat* to display files withour paginf.
+```sh
+$ cat ls-output.txt
+```
+
+join multiple fille together.
+```sh
+$cat miview.mpeg.0* > movie.mpeg
+$cat a b > c
+```
+
+if we enter cat with no argument, it reads from stdin, and we can redirect it.
+```sh
+cat > hehe.txt
+```
+
+redirect stdin:
+```sh
+$cat < d.txt
+```
+
+#### Piplines
+---
+Using the pipe
+operator | (vertical bar), the standard output of one command can be piped
+into the standard input of another.
+```sh
+%cat -l /usr/bin | less
+```
+
+#### Filters\ uniq—Report or Omit Repeated Lines
+---
+
+```sh
+$ ls /bin /usr/bin | sort | less
+```
+```sh
+$ ls /bin /usr/bin | sort | uniq | less
+
+$ ls /bin /usr/bin | sort | uniq -d | less
+
+```
+
+#### wc—Print Line, Word, and Byte Counts
+---
+```sh
+wujing@ubuntu:~/Desktop$ wc d.txt 
+ 2 10 44 d.txt
+```
+
+#### grep—Print Lines Matching a Pattern
+---
+grep pattern [file...]
+
+Let’s say we want to find all the files in our list of programs that have the word zip in the name.  
+
+```sh
+wujing@ubuntu:~/Desktop$ ls -l /usr/bin | sort | uniq | grep zip
+lrwxrwxrwx 1 root root           6 May  4 09:05 mzip -> mtools
+-rwxr-xr-x 1 root root       10488 Feb  7  2016 prezip-bin
+-rwxr-xr-x 1 root root      162688 Nov 20  2015 unzip
+-rwxr-xr-x 1 root root      162688 Nov 20  2015 zipinfo
+-rwxr-xr-x 1 root root      192520 Aug 16  2015 zip
+-rwxr-xr-x 1 root root       22864 Nov 20  2015 funzip
+-rwxr-xr-x 1 root root        2953 Nov 20  2015 zipgrep
+-rwxr-xr-x 1 root root        3303 Aug 18  2016 gpg-zip
+-rwxr-xr-x 1 root root       48459 Apr  5 05:48 zipdetails
+-rwxr-xr-x 1 root root        5656 Feb  7  2016 preunzip
+-rwxr-xr-x 1 root root        5656 Feb  7  2016 prezip
+-rwxr-xr-x 1 root root       76592 Nov 20  2015 unzipsfx
+-rwxr-xr-x 1 root root       81840 Aug 16  2015 zipnote
+-rwxr-xr-x 1 root root       81840 Aug 16  2015 zipsplit
+-rwxr-xr-x 1 root root       86224 Aug 16  2015 zipcloak
+```
+
+#### head/tail—Print First/Last Part of Files
+---
+The head command prints the first 10 lines of a file, and the tail command prints the last 10 lines. but this can be adjusted with the -n option:  
+
+```sh
+$ head -n 5 ls-output.txt
+$ tail -n 5 ls-output.txt
+```
+
+These can be used in pipelines as well:
+```sh
+$ ls /usr/bin | tail -n 5
+```
+tail has an option that allows you to view files in real time. This is useful for watching the progress of log files as they are being written. 
+```sh
+$ tail -f /var/log/messages
+```  
+This continues until you type CTRL-C
+
+#### tee—Read from Stdin and Output to Stdout and Files
+---
+“T” fitting on our pipe.  
+The tee program reads standard input and copies it to both standard output. This is useful for capturing a pipeline’s contents at an intermediate stage of processing. 
+  tee to capture the entire
+directory listing to the file ls.txt before grep filters the pipeline’s contents:  
+```sh
+$ ls /usr/bin | tee ls.txt | grep zip
+bunzip2
+bzip2
+gunzip
+gzip
+unzip
+zip
+zipcloak
+zipgrep
+zipinfo
+zipnote
+zipsplit
+```
+Two of pipline ouput data individually.
+
+## 7.Seeing the World
+* **echo**—Display a line of text.
+
+```sh
+$ echo *
+Desktop Documents ls-output.txt Music Pictures Public Templates Videos
+```
+
+#### Pathname Expansion
+---
+```sh
+echo D*
+Desktop Documents
+```
+
+#### Tilde Expansion
+---
+```sh
+$ echo ~foo
+/home/foo
+```
+
+#### Arithmetic Expansion
+---
+
+$((expression))  
+
+```sh
+$ echo $((2 + 2))
+4
+```
+![](./tb7-1.png)
+
+#### Brace Expansion
+---
+
+```sh
+$ echo Front-{A,B,C}-Back
+Front-A-Back Front-B-Back Front-C-Back
+
+$ echo Number_{1..5}
+Number_1 Number_2 Number_3 Number_4 Number_5
+
+$ echo {Z..A}
+Z Y X W V U T S R Q P O N M L K J I H G F E D C B A
+
+$ echo a{A{1,2},B{3,4}}b
+aA1b aA2b aB3b aB4b
+
+[me@linuxbox Pics]$ mkdir {2009..2011}-0{1..9} {2009..2011}-{10..12}
+[me@linuxbox Pics]$ ls
+2009-01 2009-07 2010-01 2010-07 2011-01 2011-07
+2009-02 2009-08 2010-02 2010-08 2011-02 2011-08
+2009-03 2009-09 2010-03 2010-09 2011-03 2011-09
+2009-04 2009-10 2010-04 2010-10 2011-04 2011-10
+2009-05 2009-11 2010-05 2010-11 2011-05 2011-11
+2009-06 2009-12 2010-06 2010-12 2011-06 2011-12
+```
+
+#### Parameter
+---
+
+```sh
+wujing@ubuntu:~/Desktop/pic$ echo $USER
+wujing
+```
+
+To see more enviornment:
+```sh
+wujing@ubuntu:~/Desktop/pic$ printenv | less
+```
+
+#### Command Substitution
+---
+Command substitution allows us to use the output of a command as an expansion:
+```sh
+[me@linuxbox ~]$ echo $(ls)
+Desktop Documents ls-output.txt Music Pictures Public Templates Videos
+```
