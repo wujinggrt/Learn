@@ -192,6 +192,7 @@ file filename
 [me@linuxbox ~]$ file picture.jpg
 picture.jpg: JPEG image data, JFIF standard 1.01
 ```
+Then you know the filetype to ensure it is readable or a script etc.
 
 #### Viewing File Contents with less
 *scripts*, *configuration files*.  
@@ -203,3 +204,128 @@ wujing@ubuntu:~$ less '/home/wujing/Desktop/main.c'
 ![](./table3-3.png)
 
 **less is more.**
+
+#### Tour
+---
+*symbolic link*, also known as a *soft link* or *symlimk*.  
+A file can be referenced by multiple names.  
+
+When the software updating, only instead of the old one such as *foo*, and use the new name to point it. *foo-2.6* -> foo, *foo-2.7* -> foo. So it allows us to keep both version on our machine.
+
+#### Hard Links
+---
+The second type of link.
+
+## 4.Manipulate Files and Directories
+* **cp**—Copy files and directories.
+* **mv**—Move/rename files and directories.
+* **mkdir**—Create directories.
+* **rm**—Remove files and directories.
+* **ln**—Create hard and symbolic links.
+
+#### Wildcards
+---
+![](./table4-1.png)
+![](./table4-2.png)
+![](./table4-3.png)
+  
+Wildcards can be used with any command that accepts filenames as
+arguments
+
+#### Character Ranges
+---
+[a**-*], [A-Z], [0-9].
+they will not produce the expected results unless properly configured. For now, you should avoid using them and use character classes instead.
+
+#### mkdir—Create Directories
+---
+```sh
+mkdir directory...
+mkdir dir1 dir2 dir3
+```
+
+#### cp—Copy Files and Directories
+---
+copy files or directories.
+```sh
+cp item... directory
+```
+![](./table4-4.png)  
+note the directory -r, when you need to copy directory, append it.
+![](./table4-5.png)
+
+#### mv—Move and Rename Files
+---
+```sh
+mv item1 item2
+```
+move or rename to files or directory item2.  
+
+![](./table4-6.png)
+![](./table4-7.png)
+
+#### rm—Remove Files and Directories
+---
+Be careful with rm.  
+**useful tip:**Whenever you use wildcards with rm (besides carefully
+checking your typing!), test the wildcard first with ls.    
+```sh
+rm item...
+```  
+
+Use the *-i*, irm only works when you press *y/Y*.
+
+![](./tb4-8.png)
+![](./tb4-9.png)
+
+#### ln—Create Links
+---
+hard link:only file.  
+``sh
+ln file link
+```
+symbolic link:
+```sh
+ln -s item link
+```
+If the file symbolic points to is deleted, list will show it in a disdinguishing color. Actually it points nothing.
+
+Lile shortcut in Windows.
+
+Ctrl + Shift + dragging to make link.
+
+## 5.Working with Command
+* **type**—Indicate how a command name is interpreted.
+* **which**—Display which executable program will be executed.
+* **man**—Display a command’s manual page.
+* **apropos**—Display a list of appropriate commands.
+* **info**—Display a command’s info entry.
+* **whatis**—Display a very brief description of a command.
+* **alias**—Create an alias for a command
+
+#### Creating Your Own Commands with alias
+---
+Before alias used, we should use *type* to check whether our command existed.
+```sh
+wujing@ubuntu:~/Desktop$ type test
+test is a shell builtin
+wujing@ubuntu:~/Desktop$ type hehe
+bash: type: hehe: not found
+wujing@ubuntu:~/Desktop$ 
+wujing@ubuntu:~/Desktop$ alias hehe='cd /usr;ls;cd -'
+wujing@ubuntu:~/Desktop$ type hehe
+hehe is aliased to 'cd /usr;ls;cd -'
+wujing@ubuntu:~/Desktop$ unalias hehe
+```
+
+To see all the aliases defined in the environment, use the alias command without arguments.
+
+## 6.Redirection
+* **cat**—Concatenate files.
+* **sort**—Sort lines of text.
+* **uniq**—Report or omit repeated lines.
+* **wc**—Print newline, word, and byte counts for each file.
+* **grep**—Print lines matching a pattern.
+* **head**—Output the first part of a file.
+* **tail**—Output the last part of a file.
+* **tee**—Read from standard input and write to standard output and files.
