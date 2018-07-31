@@ -1,0 +1,108 @@
+# Java frequent method
+
+## API
+
+#### String
+1. str.substring(beginIndex, endIndex)  # exclusive endindex
+2. str_object + str_obj2 
+3. String.join(" / ", "H", "e", ";", "o"); # class method
+4. s.equals(t) 
+5. s.equalsIgnoreCase(t)
+6. s.length()
+7. s.codePointCount(beginIndex, endIndex) # exclusive endIndex,返回char的个数，codepoint
+8. s.charAt(index)
+9. s.offsetByCodePoint(index, codePointOffSet) # 得到第i个codepoint,index + codePointOffset，index的偏移co。。个数的索引  
+10. s.codePointAt(index) #   
+11. s.trim()
+12. int[] cp = s.codePoints().toArray()
+13. String = new String(cp, 0, cp.length())
+14. s.toLowerCase()
+15. s.toUpperCase()
+16. s.compareTo(other)
+17. s.startsWith(prefix)
+18. s.endswith(suffix)
+19. 
+
+#### StringBuilder
+1. var builder = new StringBuilder() # params:1.None, 2.capacity, 3.str, 4.CharSequence
+2. builder.append(many_type)
+3. var s = builder.toString()
+4. builder.delete(start, end) # exclusive end
+5. builder.setCharAt(i, char c)
+6. builder.insert(offset, str/c) # before offset    
+7. builder.replace(start, end, str) # not exlusive any
+
+#### 输入输出
+Scanner 在 java.util.*
+1. Scannaer in = new Scanner(System.in)
+2. String s = in.nextLine()
+3. String s = in.next() # cin
+4. int i = in.nextInt()
+5. in.hasNext() 
+
+Console:
+1. Console cons = System.console();
+2. String username = cons.readLine("User name: ")；
+3. char[] passwd = cons.readPassword("Password: ");
+
+#### Format
+1. System.out.printf()
+2. String.format() # 参数和printf同
+
+#### array
+1. int[] small = {1, 2, 3};
+2. small = new in[] {1, 2, 3, 4};
+3. var newArray = Arrays.copyOf(small, small.length)
+4. Arrays.toString()
+
+#### Date/LocalDate
+
+#### Objects.equals(l, r)
+
+#### 匿名类
+匿名内部类
+1. 概念：即内部类的简化写法
+1. 前提：存在一个类（可以是具体类也可以是抽象类）或接口
+2. 格式：new 类名或接口名{重写的方法}
+3. 本质：创建的是继承了类或实现了接口的子类匿名对象。
+```java
+interface D{
+void ShowContext();
+}
+class B{
+public void show() {
+//匿名内部类的实现
+new D(){
+@Override
+public void ShowContext() {
+System.out.println("hello");
+}
+};
+};
+}
+```
+
+#### ArrayList<T>
+1. var staff = ArrayList<String>() # or initCapacity
+2. staff.add("Mike")
+3. staff.ensureCapacity(100)
+4. staff.size()
+5. staff.trimToSize()
+6. staff.set(i, value)
+7. staff.get(i)
+8. staff.remove(index)
+
+#### Integer
+1. Integer.parseInt(s)
+2. iobj.intValue()
+3. Integer.toString(i, radix)
+4. Integer.valueOf(str, radix)
+5. Number parse(str)
+
+#### 可变参数
+1. public PrintStream printf(String fmt, Object... args)
+
+like Object[], autoboxing.
+
+#### enum
+1. ordinal() # 返回枚举常量位置
