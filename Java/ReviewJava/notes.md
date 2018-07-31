@@ -91,13 +91,15 @@ System.out.println("hello");
 6. staff.set(i, value)
 7. staff.get(i)
 8. staff.remove(index)
+9. Arrays.sort(staff)
 
 #### Integer
 1. Integer.parseInt(s)
 2. iobj.intValue()
 3. Integer.toString(i, radix)
 4. Integer.valueOf(str, radix)
-5. Number parse(str)
+5. Integer/Double.compare(x, y) # x < y 返回 -1, 相等0, x>y返回1。 感觉里面的判断是return x - y；
+6. Number parse(str)
 
 #### 可变参数
 1. public PrintStream printf(String fmt, Object... args)
@@ -106,3 +108,101 @@ like Object[], autoboxing.
 
 #### enum
 1. ordinal() # 返回枚举常量位置
+
+#### interfalce
+
+```java
+
+// for Arrays.sort()
+public interface Comparable<T>{
+    // x < other : -1
+    // x == other : 0
+    // x > other : 1
+    int compareTo(T other);
+}
+```
+接口可以声明变量，但是不能new成object  
+
+```java
+public interface Comparator<T> {
+
+    int compare(T first, T second); 
+}
+
+Arrays.sort(arrays, implementedComparator);
+```
+
+#### Collection
+##### Iterator<E> iterator() // a method returns Iterator
+usage:  
+```java
+for(Iterator<String> it=list.iterator();it.hasNext();)
+{
+    System.out.println(it.next());
+}
+```
+
+###### iterable for each
+```java
+public class Main
+{
+    public static void main(String[] args)
+    {
+        MyString s = new MyString("1234567");
+        
+        for(char c:s)
+        {
+            System.out.println(c);
+        }
+    }
+
+}
+
+
+
+
+class MyString implements Iterable<Character>
+{
+    
+    private int length = 0;
+    private String ineers = null;
+    
+    public MyString(String s)
+    {
+        this.ineers = s;
+        this.length = s.length();
+    }
+    
+    
+    @Override
+    public Iterator<Character> iterator()
+    {
+        
+        class iter  implements Iterator<Character>     //方法内部类
+        {
+            private int cur= 0;
+            
+            @Override
+            public boolean hasNext()
+            {
+                return cur != length;
+            }
+
+            @Override
+            public Character next()
+            {
+                Character c = ineers.charAt(cur);
+                cur++;
+                return c;
+            }
+            
+            public void remove()
+            {
+                 // do nothing 
+            }
+
+        }
+        return new iter();     //安装Iterable接口的约定，返回迭代器
+    }
+}
+```

@@ -53,5 +53,9 @@ public class Main {
                 staff) {
             System.out.printf(e + " ");
         }
+
+        System.out.println(Integer.compare(1, 2));
+        Character c = 'c';
+        System.out.println(c + "adssad");
     }
 }
