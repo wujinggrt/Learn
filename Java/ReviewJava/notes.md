@@ -44,8 +44,19 @@ codepoint:4
 6. builder.insert(offset, str/c) # before offset    
 7. builder.replace(start, end, str) # not exlusive any
 
-#### Date/LocalDate
-1. new Date().toString(0)
+#### Date
+1. new Date().toString()
+
+#### LocalDate
+1. LocalDate.now()
+2. var date = LocalDate.of(2018, 8, 1)
+3. int year = date.getYear();
+4. int month = date.getMonthValue();
+5. int day = date.getDayOfMonth()
+6. date.plusDays(100)
+7. date.minusDays(100)
+8. DayOfWeek weekDay = date.getDayOfWeek()
+9. int value = weekDay.getValue()
 
 #### 输入输出
 Scanner 在 java.util.*
