@@ -1,6 +1,18 @@
 # Java frequent method
 
-## API
+## compile
+java compiler需要的是路径， java虚拟机需要的是包名。所以是.，而不是/  
+```sh
+C:\Users\WuJing\Desktop>javac ./com/company/*.java
+
+C:\Users\WuJing\Desktop>java com.company.Main
+Hello
+Hel
+HelloHel
+H / e / ; / o
+5
+codepoint:4
+```
 
 #### String
 1. str.substring(beginIndex, endIndex)  # exclusive endindex
@@ -31,6 +43,9 @@
 5. builder.setCharAt(i, char c)
 6. builder.insert(offset, str/c) # before offset    
 7. builder.replace(start, end, str) # not exlusive any
+
+#### Date/LocalDate
+1. new Date().toString(0)
 
 #### 输入输出
 Scanner 在 java.util.*
