@@ -8,7 +8,8 @@ import java.lang.reflect.Modifier;
 public class ObjectAnalyzer {
     public static void main(String[] args) {
         var o = new ObjectAnalyzer("java.lang.Double");
-        System.out.println(o.analyzeFields());
+        System.out.println(o);
+
     }
 
     private String name = null;
@@ -50,15 +51,17 @@ public class ObjectAnalyzer {
         }
         if (interfaceCl.length != 0) {
             builder.append(" implements");
-            for (var itf :
-                    interfaceCl) {
-                builder.append(" " + itf.getName() + ",");
+            for (int i = 0; i < interfaceCl.length; i++) {
+                builder.append(" " + interfaceCl[i].getName());
+                if (i != interfaceCl.length - 1) {
+                    builder.append(",");
+                }
             }
-            builder.deleteCharAt(builder.length() - 1);
         }
-        builder.append(" {\n");
-        String ret = builder.toString();
-        return ret;
+//        builder.append(" {\n");
+
+        builder.trimToSize();
+        return builder.toString();
     }
 
     /**
@@ -70,21 +73,115 @@ public class ObjectAnalyzer {
         var fields = cl.getDeclaredFields();
         for (var f :
                 fields) {
+            builder.append("\t");
             String modifiers = Modifier.toString(f.getModifiers());
             if (modifiers.length() > 0) {
                 builder.append(modifiers + " ");
             }
             builder.append(f.getType().getName() + " " + f.getName() + ";\n");
         }
-        String ret = builder.toString();
-        return ret;
+
+        builder.trimToSize();
+        return builder.toString();
     }
 
     /**
      * Anaylize constructor.
      * @return format String.
      */
-    public String analyzeConstructor() {
-        
+    public String analyzeConstructors() {
+        var builder = new StringBuilder(200);
+        var cons = cl.getDeclaredConstructors();
+        for (var c :
+                cons) {
+            builder.append("\t");
+            String modifiers = Modifier.toString(c.getModifiers());
+            if (modifiers.length() > 0) {
+                builder.append(modifiers + " ");
+            }
+            builder.append(c.getName() + "(");
+            var params = c.getParameterTypes();
+            for (int i = 0; i < params.length; i++) {
+                builder.append(params[i].getName());
+                if (i != params.length - 1) {
+                    builder.append(", ");
+                }
+            }
+            builder.append(")");
+            var exc = c.getExceptionTypes();
+            if (exc.length > 0) {
+                builder.append(" throws ");
+                for (int i = 0; i < exc.length; i++) {
+                    builder.append(exc[i].getName());
+                    if (i != exc.length - 1) {
+                        builder.append(", ");
+                    }
+                }
+            }
+            builder.append(";\n");
+        }
+        builder.trimToSize();
+
+        return builder.toString();
+    }
+
+    public String analyzeMethods() {
+        var builder = new StringBuilder(200);
+        var methods = cl.getDeclaredMethods();
+        for (var m :
+                methods) {
+            builder.append("\t");
+            String modifiers = Modifier.toString(m.getModifiers());
+            if (modifiers.length() > 0) {
+                builder.append(modifiers + " ");
+            }
+            builder.append(
+                    m.getReturnType().getName() +
+                    " " +
+                    m.getName() +
+                    "("
+            );
+            var params = m.getParameterTypes();
+            for (int i = 0; i < params.length; i++) {
+                builder.append(params[i].getName());
+                if (i != params.length - 1) {
+                    builder.append(", ");
+                }
+            }
+            builder.append(")");
+            var exc = m.getExceptionTypes();
+            if (exc.length > 0) {
+                builder.append(" throws ");
+                for (int i = 0; i < exc.length; i++) {
+                    builder.append(exc[i].getName());
+                    if (i != exc.length - 1) {
+                        builder.append(", ");
+                    }
+                }
+            }
+            builder.append(";\n");
+        }
+
+        builder.trimToSize();
+        return builder.toString();
+    }
+
+    /**
+     * Set format output.
+     * @return String
+     */
+    public String toString() {
+        var head = analyzeClassName();
+        var fields = analyzeFields();
+        var cons = analyzeConstructors();
+        var methods = analyzeMethods();
+
+        String ret = head + " {\n";
+        ret += fields + "\n";
+        ret += cons + "\n";
+        ret += methods + "\n";
+        ret += "}";
+
+        return ret;
     }
 }
