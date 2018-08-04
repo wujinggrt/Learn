@@ -1,12 +1,21 @@
 package com.company;
 
+import java.lang.reflect.AccessibleObject;
 import java.lang.reflect.Modifier;
 import java.util.Iterator;
 
 public class ReflectionTypeDemo {
     private Iterator<String> h = new Hehe();
+    private Integer n = 0;
 
+    /**
+     *
+     * @param args
+     */
     public static void main(String[] args) {
+        /**
+         * c
+         */
         var c = Double.class;
         var fields = c.getFields();
 
@@ -35,12 +44,29 @@ public class ReflectionTypeDemo {
         var temp = new ReflectionTypeDemo();
         var cc = temp.getClass();
         var ccFields = cc.getDeclaredFields();
+        AccessibleObject.setAccessible(ccFields, true);
         System.out.println("is interface?");
         for (var e :
                 ccFields) {
             var m = e.getModifiers();
             System.out.println(Modifier.isInterface(m));
+            try {
+                Class t = e.getType();
+                Object val = e.get(temp);
+                System.out.println(val);
+            } catch (Exception e1) {
+                e1.printStackTrace();
+            }
         }
+        var s = "hee";
+        s = s + 432;
+        s = s + new Hehe();
+        s += "\n";
+        System.out.println(s);
+        s = null;
+        s += "Hello";
+        System.out.println(s);
+        System.out.println(((Object) new Hehe()).getClass().getName());
     }
 }
 
@@ -63,6 +89,11 @@ class Hehe implements Iterator<String>, Haha {
     @Override
     public String next() {
         return null;
+    }
+
+    @Override
+    public String toString() {
+        return "Hello";
     }
 }
 

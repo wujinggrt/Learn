@@ -20,6 +20,7 @@ obj.getInterface() // class<?>[]
 5. Method[] getDeclaredMethods()
 6. Constructor[] getConstructors()
 6. Constructor[] getDeclaredConstructors()
+10. Class<?> getComponentType() //返回数组的type
 
 #### java.lang.reflect.[Field, Method, Constructor]
 1. Class getDeclaringClass() ``` // Field: class java.lang.Double```  
