@@ -15,8 +15,7 @@ public class ConcurrencyDemo {
      */
     public void unsynchConcurrencyTest() {
         for (int i = 0; i < 100; i++) {
-            Runnable r = () ->
-            {
+            Runnable r = () -> {
                 try {
                     while (true) {
                         int num = (int) (100 * Math.random());
@@ -73,8 +72,7 @@ public class ConcurrencyDemo {
      */
     public void lockOneConcurrencyTest() {
         for (int i = 0; i < 10; i++) {
-            Runnable r = () ->
-            {
+            Runnable r = () -> {
                 try {
                     var cur = Thread.currentThread();
                     System.out.println(cur + ":Try to get lock...");
@@ -209,8 +207,7 @@ public class ConcurrencyDemo {
      */
     public void lockConcurrencyTest() {
         for (int i = 0; i < 10; i++) {
-            Runnable r = () ->
-            {
+            Runnable r = () -> {
                 while (true) {
                     try {
                         var cur = Thread.currentThread();
