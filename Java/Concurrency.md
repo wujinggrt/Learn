@@ -10,7 +10,7 @@
 ```java
 // one thread
 // 放弃锁，被阻塞
-// 但是被signal的时候，会重新被锁保护，然后得到lock，然后unlock
+// 但是被signal的时候，会重新被锁保护（锁可用），然后得到lock，然后unlock
 while(!(ok to proceed)){
     enough.await();
 }
