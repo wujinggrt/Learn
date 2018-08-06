@@ -9,6 +9,9 @@ import java.util.concurrent.locks.ReentrantLock;
  * 关于ReentrantLock以及Condition的使用。
  */
 public class ConcurrencyDemo {
+    /**
+     * 锁可以保护代码片段。
+     */
     private Lock lock = new ReentrantLock();
     private Condition cond = null;
 
