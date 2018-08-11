@@ -11,7 +11,7 @@ CREATE TABLE t_user (
 	`password` VARCHAR(32),
 	`last_visit` datetime,
 	`last_ip` VARCHAR(23),
-	pPRIMARY KEY (`user_id`)
+	PRIMARY KEY (`user_id`)
 )ENGINE=InnoDB;
 
 CREATE TABLE t_login_log (
