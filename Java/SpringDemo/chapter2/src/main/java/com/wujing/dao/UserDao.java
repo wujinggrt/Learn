@@ -45,7 +45,7 @@ public class UserDao {
                 });
         return user;
     }
-    
+
     /**
      * public void updateLoginInfo(User user) {
      *      jdbcTemplate.update(UPDATE_LOGIN_INFO_SQL, new Object[] { user.getLastVisit(),
