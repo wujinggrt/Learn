@@ -1,0 +1,9 @@
+# a brief mysql note
+
+#### INT AUTO_INCREMENT
+For this type, the key was set as 0 first time.
+And each time the value (which is not set) increment by 1 automatically.
+Once it was specified by a accurate value, plus the next time if it was not specified.
+
+### For the NOT NULL and without DEFAULT key word.
+if the table items input was not specified, stored as NULL.
