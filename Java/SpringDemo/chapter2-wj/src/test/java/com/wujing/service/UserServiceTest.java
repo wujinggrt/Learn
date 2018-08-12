@@ -1,17 +1,14 @@
 package com.wujing.service;
 
-import com.wujing.domain.User;
-import org.junit.Test;
+import java.util.Date;
+import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.testng.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import com.wujing.domain.User;
+import static org.testng.Assert.*;
 
-import java.util.Date;
-
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
-
-@ContextConfiguration("classpath*:/wujing-context.xml")
+@ContextConfiguration("classpath*:/applicationContext.xml")
 public class UserServiceTest extends AbstractTransactionalTestNGSpringContextTests {
 
     @Autowired
