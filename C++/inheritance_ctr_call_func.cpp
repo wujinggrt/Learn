@@ -14,7 +14,9 @@ public:
 
 class Base2 : public virtual Base1 {
 public:
-	Base2() {
+	// 错误的，下一行代码，因为vptr还没有初始化
+	// Base2():f() {
+	Base2():f() {
 		f();
 	}
 
