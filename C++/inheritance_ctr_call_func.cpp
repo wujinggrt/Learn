@@ -33,9 +33,22 @@ public:
 };
 
 int main() {
+	cout << "Base1 b1:" << endl;
 	Base1 b1;
+
+	cout << "Base2 b2:" << endl;
 	Base2 b2;
-	
-//	b2.f();
+
+/*
+Base1 b1:
+Base110
+Base110
+Base2 b2:
+Base2100
+100
+Base110
+Base2100
+*/
+
 	return 0;
 }
