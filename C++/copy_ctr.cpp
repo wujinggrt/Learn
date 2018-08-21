@@ -19,5 +19,10 @@ public:
 
 int main() {
     A a = A(2);
+    A b;
+    A c = b;
+// p
+// ctr
+// cpy   
     return 0;
 }
