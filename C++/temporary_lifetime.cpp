@@ -35,6 +35,7 @@ int main() {
 	cout << __LINE__ << endl;
 
 /*
+深度探索C++对象模型：272页；
 25
 Temp
 27
