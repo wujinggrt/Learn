@@ -36,6 +36,8 @@ int main() {
 
 /*
 深度探索C++对象模型：272页；
+在“||”就是一个full-expression，在这个表达式完整的求出值之前，temporary object不会被释放，
+也就是直到进行到右边的括号“）”之前。
 25
 Temp
 27
