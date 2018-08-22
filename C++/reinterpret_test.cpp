@@ -15,6 +15,11 @@ class Hehe {
 };
 
 int main() {
+	int i;
+	double d = 4.396;
+	i = static_cast<int>(d);
+	cout << i << " " << d << endl;
+	
 	// ASCII of 'a' is 97
 	char c = 'a';
 	char *pc = &c;
@@ -51,22 +56,23 @@ int main() {
 	
 	return 0;
 /*
+4 4.396
 a c
 a Pc
-97 Pi
-26
+618475361 Pi
+33
 Hehe
-28
-30
+35
+37
 1 Pi
-32
+39
 1 P4Hehe
-34
+41
 2
 2
-44
+51
 ~Hehe
-46
+53
 0
 */	
 }
