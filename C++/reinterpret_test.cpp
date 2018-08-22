@@ -18,10 +18,12 @@ int main() {
 	// ASCII of 'a' is 97
 	char c = 'a';
 	char *pc = &c;
-	int *i = reinterpret_cast<int*>(pc);
+	// 下一行编译器会报错
+	// int i = reinterpret_cast<int>(pc);
+	int *p = reinterpret_cast<int *>(pc);
 	cout << c << " " << typeid(c).name() << endl;
 	cout << *pc << " " << typeid(pc).name() << endl;
-	cout << *i << " " << typeid(i).name() << endl;
+	cout << *p << " " << typeid(p).name() << endl;
 
 	cout << __LINE__ << endl;
 	Hehe *ph = new Hehe();
