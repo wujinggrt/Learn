@@ -2,7 +2,7 @@
 using namespace std;
 
 int a() {
- return 29;
+ return 2;
 }
 /*
  * b()表示一个函数
