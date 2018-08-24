@@ -1,37 +1,26 @@
 #include <iostream>
 using namespace std;
 
-// 测试STL源码剖析57页set_malloc_handler语法
-void (*pf(void (*f)()))() 
-{
-    f();
-
-    return f;
+int a() {
+ return 29;
 }
-
-void print()
-{
-    cout << __func__ << endl;
+/*
+ * b()表示一个函数
+ * (*b())说明我们可以对一个函数调用结果解引用
+ * (*b())()表示解引用函数调用之后是一个函数
+ * int (*b())() 表示解引用函数调用之后是一个函数，函数的返回值是int类型的，即返回一个函数指针
+int (*b())() {
+ return a;
 }
-
-void* another_f(void (*f)())
-{
-    f();
-
-    return f;
+*/
+//C++11的定义方式
+auto b() -> int (*) (){
+ return &a;//直接a也是可以的
 }
-
-int main() 
+int main()
 {
-    auto f = pf(print);
-    f();
-// 输出：
-// print
-// print
+ std::cout<<(*b())()<<std::endl;
+ std::cout<<b()()<<std::endl;
 
-    auto f2 = another_f(print);
-    f2();
-    
-
-    return 0;
+ return 0;
 }
