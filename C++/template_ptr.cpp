@@ -8,6 +8,12 @@ void f(T p)
     cout << *p << endl;
 }
 
+template<typename T>
+void f2(const T &p)
+{
+    cout << p << endl;
+}
+
 class A
 {
 public:
@@ -30,6 +36,8 @@ int main()
     A a(string("hehe"));
     cout << "*a: " << *a << endl;
     cout << "a->size(): " << a->size() << endl;
+
+    f2(*p);
 
     return 0;
 }
