@@ -5,6 +5,8 @@
 #include <cstdlib>
 #include <climits>
 
+// 使用auto ptr = new char[sz];为placement new分配空间？
+// delete [] ptr;
 namespace wj
 {
     template<int inst>
