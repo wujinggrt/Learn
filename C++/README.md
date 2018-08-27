@@ -20,3 +20,21 @@ void (*set_malloc_handler(void (*f) ()))()
 }
 ```
 
+## 2. STL
+
+### 2.1 容器(container)
+
+#### 2.1.1 内存相关
+
+使用序列容器的时候，需要注意内存方面的问题。
+
+* vector的扩张发生的拷贝。
+* 在容器使用clear()方法之后，虽然item为空，但是空间依旧被占据。
+
+知道数据量的估计值的话，在使用vector的时候，应该注意使用`vec.reserve(count)`来预留足够的空间。
+
+（此项`list`除外，因为其使用了链表）在使用`container.clear()`之后，使用：
+1. `shrink_to_fit() `
+2. `swap(empty_container)`  
+
+以此来裁剪、释放不必要的空间。
