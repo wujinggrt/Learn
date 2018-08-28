@@ -113,3 +113,52 @@ iterator insert( const_iterator pos, InputIt first, InputIt last );` (since C++1
 // *it_4:4
 // *it_4_end:5
 ```
+
+#### 2.1.2 无序容器
+
+以`unordered_multiset`为例子，无需容器以`hash function`来运算，且在存储上组织为一组`buket`，可以保存0或多个元素， `hash function`映射到这个`buket`上。  
+
+1. `c.buket(key`)
+2. `c.begin(buket_index)`
+
+```C++
+unordered_multiset<int> uiset = {4, 1, 1, 1, 7, 5, 4, 2, 3};
+cout << "unoredered_set:";
+for (const auto &e: uiset)
+{
+    cout << e << " ";
+}
+cout << endl;
+// unoredered_set:3 2 5 7 1 1 1 4 4
+
+cout << "buket_count:" << uiset.bucket_count() << endl;
+// buket_count:11
+
+cout << "buket index:" << endl;
+for(const auto &e: uiset)
+{
+    cout << e << " : " << uiset.bucket(e) << endl;;
+}
+// buket index:
+// 3 : 3
+// 2 : 2
+// 5 : 5
+// 7 : 7
+// 1 : 1
+// 1 : 1
+// 1 : 1
+// 4 : 4
+// 4 : 4
+
+cout << "uiset.bucket_size(1):" << uiset.bucket_size(1) << endl;
+auto it = uiset.begin(1);
+while (it != uiset.end(1))
+{
+    cout << *it << endl;
+    ++it;
+}
+// uiset.bucket_size(1):3
+// 1
+// 1
+// 1
+```
