@@ -68,4 +68,48 @@ iterator insert( const_iterator pos, InputIt first, InputIt last );` (since C++1
 #### 2.1.5 copy/copy_backward
 
 1. `copy(iter_first, iter_end, iter_result)`
-1. `copy_backward(iter_first, iter_end, iter_result)`
+1. `copy_backward(iter_first, iter_end, iter_result)`M, 
+
+### 2.2 关联容器
+
+`set, map`的底层为`RB-tree`，所以进行存储的时候，会变得有序。
+
+`unoredered_xxx`则是`hash`机制来实现，所以存储不会变得有序。
+
+#### 2.1.1 有序容器
+
+使用的API：
+
+1. `c.find(k)`
+2. `c.count(k)`
+3. `c.lower_bound(k)`
+4. `c.upper_bound(k)`
+
+```C++
+    set<int> iset = {4, 1, 1, 7, 5, 4, 2, 3};
+    cout << "iset:";
+    for(auto &e: iset)
+    {
+        cout << e << " ";
+    }
+    cout << endl;
+// iset:1 2 3 4 5 7
+// 显然排好了序，因为底层是RB-tree
+
+    multiset<int> miset = {4, 1, 1, 7, 5, 4, 2, 3};
+    cout << "miset:";
+    for(auto &e: miset)
+    {
+        cout << e << " ";
+    }
+    cout << endl;
+// miset:1 1 2 3 4 4 5 7    
+
+    auto it_4 = miset.lower_bound(4);
+    auto it_4_end = miset.upper_bound(4);
+
+    cout << "*it_4:" << *it_4 << endl;
+    cout << "*it_4_end:" << *it_4_end << endl;
+// *it_4:4
+// *it_4_end:5
+```
