@@ -76,6 +76,8 @@ iterator insert( const_iterator pos, InputIt first, InputIt last );` (since C++1
 
 `unoredered_xxx`则是`hash`机制来实现，所以存储不会变得有序。
 
+使用`range for`可以遍历每一个`vallue type`的容器元素，`map`的为`pair<T, U>`类型。
+
 #### 2.1.1 有序容器
 
 使用的API：
@@ -161,4 +163,13 @@ while (it != uiset.end(1))
 // 1
 // 1
 // 1
+```
+### 2.1.3 algorithm
+
+#### 2.1.3.1 accumulate
+
+```C++
+template< class InputIt, class T, class BinaryOperation >
+T accumulate( InputIt first, InputIt last, T init,
+              BinaryOperation op );
 ```
