@@ -173,3 +173,55 @@ QIntValidator类:提供了一个确保一个字符串包含一个在一定有效
     QIntValidator *validator = new QIntValidator(min, max, this);
     ui->lineEdit->setValidator(validator);
 ```
+
+#### 3.3.4 通过button来了解信号和槽的自动关联机制
+
+##### 自动关联
+
+在button上右击进入go to slot，可以进入到button中，可以看到button可以发出的信号,这些信号即是在进行相关操作的时候，emit出的signals，可以通过点击ok来编写捕捉signals的slots，从而完成响应操作。
+
+![](./go_to_slot.png)
+
+![](./button_signals.png)
+
+##### 写connect关联
+
+```C++
+    connect(button, SIGNAL(clicked()), signalMapper, SLOT(map()));
+```
+
+### 4. Dialog
+
+只有窗口模式```dlg->setWindowModality(Qt::WindowModal);```可以点击父窗口，```dlg->setWindowModality(Qt::ApplicationModal);dlg->setWindowModality(Qt::ApplicationModal);```都不可以。
+
+
+1.点击弹出窗口模态对话框，那么你无法点击它的父窗口，但可以点击非模态对话框。
+
+2.关闭窗口模态对话框，那么其他窗口就都可以点击了。
+
+3.打开应用模态对话框，那么所有的其他窗口都无法再点击。
+
+4.关闭应用模态对话框，打开自定义对话框，分别点击OK，Cancle和关闭按钮，查看LineEdit的内容。
+
+#### 4.1 创造
+
+```C++
+    QDialog *dlg = new QDialog(this);
+    dlg->setAttribute(Qt::WA_DeleteOnClose);
+    dlg->setWindowModality(Qt::ApplicationModal);
+    dlg->show();
+    qDebug() << "app";
+```
+
+# 安装配置opencv的qt，使用MSVC
+
+安装时选择MSVC 对应的版本，从而选择opencv的版本不仅VS可以用，QT也可以通过MSVC来使用opencv的库。
+
+之后添加在.pro文件：
+
+INCLUDEPATH+= C:\ForProgram\opencv\build\include
+LIBS+= C:\ForProgram\opencv\build\x64\vc15\lib\opencv_world341d.lib
+
+在工程名字后右键选择add library, external library。
+
+之后就可以使用QT中的opencv。
