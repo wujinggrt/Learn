@@ -118,7 +118,9 @@ iterator insert( const_iterator pos, InputIt first, InputIt last );` (since C++1
 
 #### 2.1.2 无序容器
 
-以`unordered_multiset`为例子，无需容器以`hash function`来运算，且在存储上组织为一组`buket`，可以保存0或多个元素， `hash function`映射到这个`buket`上。  
+以`unordered_multiset`为例子，无需容器以`hash function`来运算，且在存储上组织为一组`buket`，可以保存0或多个元素， `hash function`映射到这个`buket`上。 
+
+[unordered_multiset测试代码](./STL/unordered_container_test.cpp)
 
 1. `c.buket(key`)
 2. `c.begin(buket_index)`
