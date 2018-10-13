@@ -1,10 +1,13 @@
+#include <memory>
+#include <string>
 #include <unordered_set>
+#include <unordered_map>
 #include <iostream>
 using namespace std;
 
-int main()
+void test()
 {
-    unordered_multiset<int> uiset = {4, 1, 1, 1, 7, 5, 4, 2, 3};
+        unordered_multiset<int> uiset = {4, 1, 1, 1, 7, 5, 4, 2, 3};
     cout << "size():" << uiset.size() << '\n';
 // size():9
     cout << "max_size():" << uiset.max_size() << '\n';
@@ -106,5 +109,22 @@ int main()
     }
 // uiset.bucket_size(6):0
 
+}
+
+int main()
+{
+    std::unordered_map<std::string, int> m{{"H", 2}, {"A", 1}};
+    if (m["B"])
+    {
+        cout << m["B"] << '\n';
+    }
+    else
+    {
+        cout << "not exist" << '\n';
+    }
+    for (auto e: m)
+    {
+        cout << e.first << " " << e.second << endl;
+    }
     return 0;
 }
