@@ -1,40 +1,76 @@
+#include <vector>
 #include <iostream>
 #include <utility>
 using namespace std;
 
 int g = 10;
 
+class A {
+public:
+    explicit A(int i = 1) : i_{i} {
+        printf("Default one!\n");
+    }
+
+    A(const A &other) : i_{other.i_} {
+        printf("Copy\n");
+    }
+
+    A(A &&other) : i_{std::move(other.i_)} {
+        printf("Move\n");
+        other.i_ = 0;
+    }
+
+public:
+    int i_;
+};
+
+class B {
+public:
+    B() {
+        cout << __func__ << "\n";
+    }
+    explicit B(A a) : a_{a} {
+        cout << __func__ << "\n";
+    }
+
+    B(const B &b) : a_{b.a_} {
+        cout << "Copyyyy" << "\n";
+    }
+
+private:
+    A a_;
+};
+
 int main()
 {
-    int i = 1;
+    A a;
+    cout << __LINE__ << "\n";
+    A b = std::move(a);
+    cout << __LINE__ << "\n";
+    A c(b);
+    cout << __LINE__ << "\n";
+    A d(std::move(A()));
+    cout << __LINE__ << "\n";
 
-    cout << "g:" << g << endl;
-    cout << "i:" << i << endl;
+    B bb;
+    cout << __LINE__ << "\n";
+    B b1 = std::move(bb);
+    cout << __LINE__ << "\n";
 
-    int &&j = std::move(g);
-    int &&k = std::move(i);
-
-    cout << "&&j:" << j << endl;
-    cout << "&&k:" << k << endl;
-    cout << "g:" << g << endl;
-    cout << "i:" << i << endl;
-
-    i = 2;
-    j = 3;
-    cout << "i:" << i << endl;
-    cout << "&&j:" << j << endl;
-
-    string s = "Hello";
-    cout << "s:" << s << endl;
-    string &&t = std::move(s);
-    cout << "&&t:" << t << endl;
-    cout << "s:" << s << endl;
-
-    s = "None";
-    cout << "s:" << s << endl;
-    
-    t = "World";
-    cout << "&&t:" << t << endl;
-
-    return 0;
+    auto a1 = A(2);
+    cout << __LINE__ << "\n";
+    vector<A> vec;
+    vec.reserve(10);
+    vec.push_back(a1);
+    cout << __LINE__ << "\n";
+    vec.push_back(std::move(b));
+    cout << __LINE__ << "\n";
+    vec.push_back(A{200});
+    cout << __LINE__ << "\n";
+    {
+        A a;
+        vec.push_back(move(a));
+    }
+    cout << __LINE__ << "\n";
+    vec.reserve(100);
 }
