@@ -190,3 +190,147 @@ cout << "(3 / 2.0):" << (3 / 2.0) << endl;
 // (3.0 / 2):1.5
 // (3 / 2.0):1.5
 ```
+
+## 4 GDB
+
+
+GDB 的 TUI:
+
+    gdb a.out
+    (gdb)start arg1 arg2 ...
+    (gdb)list
+    ctrl + x + a # UI
+    next
+    CTRL + L 清屏，避免花屏
+    ctrl + X + 2 查看汇编 如果在 ctrl + X again 获得寄存器。
+
+    tui reg float 获取 float 的寄存器？
+
+    CTRL + P 再次可以使得以前的命令, up-arrow 是控制界面
+
+    print x
+    set x = 3  // modify
+
+    backtrace // 看到函数调用 trace
+    step
+
+*NOTE* the next and step commands are different. On a line of code that has a function call, next will go 'over' the function call to the next line of code, while step will go 'into' the function call.
+
+#### call
+
+gdb 可以调用这个运行文件里面已经定义了的函数，比如执行
+
+    (gdb)call func(a)
+
+传入的参数也是当前的变量。
+
+#### Return from function
+
+    finish
+
+#### info
+
+    info frame
+    info args
+    info locals
+
+#### break
+
+    break 14 // set breakpoint at line 14
+
+If you have more than one file, you must give the break command a filename as well:
+
+    break test.c:19
+
+set a breakpoint on a C function:
+
+    break func1
+
+set a breakpoint on a C++ function:
+
+    break TestClass::test_func(int)
+
+set a temporary breakpoint, A temporary breakpoint only stops the program once, and is then removed.
+
+    tbreak ...
+
+get a list of breakpoints:
+
+    info breakpoints
+
+disable bp:
+
+    disable 2 // break num in info breakpoints
+
+skip breakpoints,two arguments: the breakpoint number to skip, and the number of times to skip it.:
+
+    ignore 2 5
+
+### watch point
+---
+
+the variabel you want to set a watchpoint on must be in the current scope.
+
+观察点只能设置在当前的 scope，所以需要在这个 scope 先设置断点。设置观察点后，然后 c，每次当观察的变量有变化的时候就会停止，然后在等待执行 c。
+
+    watch x
+    rwatch x
+    awatch x
+
+disable 用法同断点，先 i breakpoints 然后在对应到 num 上。
+
+### examine memory
+
+use the x command to examine memory.
+
+If we have char *s = "Hello World\n", some uses of the x command could be:
+
+Examine the variable as a string:
+
+
+Examine the variable as a string:
+
+
+    (gdb) x/s s
+    0x8048434 <_IO_stdin_used+4>:    "Hello World\n"
+Examine the variable as a character:
+
+
+    (gdb) x/c s
+    0x8048434 <_IO_stdin_used+4>:   72 'H'
+Examine the variable as 4 characters:
+
+
+    (gdb) x/4c s
+    0x8048434 <_IO_stdin_used+4>:   72 'H'  101 'e' 108 'l' 108 'l'
+
+Examine the first 32 bits of the variable:
+
+
+    (gdb) x/t s
+    0x8048434 <_IO_stdin_used+4>:   01101100011011000110010101001000
+Examine the first 24 bytes of the variable in hex:
+
+
+    (gdb) x/3x s
+    0x8048434 <_IO_stdin_used+4>:   0x6c6c6548      0x6f57206f      0x0a646c72
+
+#### core dump, use core core
+
+When your program segfaults and leaves a core dump file, you can use gdb to look at the program state when it crashed. Use the core command to load a core file. The argument to the core command is the filename of the core dump file, which is usually "core", making the full command core core.
+
+
+    prompt > myprogram
+    Segmentation fault (core dumped)
+    prompt > gdb myprogram
+    ...
+    (gdb) core core
+    ...
+
+    nexti, stepi
+
+    (gdb) disassemble main
+
+#### registers
+
+    i registers // CTRL + X + 2
